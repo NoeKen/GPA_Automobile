@@ -1,0 +1,128 @@
+@charset "ISO-8859-1";
+body{
+	background-color: red;
+}
+
+*{
+  padding:0;
+  margin:0;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+:root{
+  --lightGreen:lightgreen;
+  }
+
+
+body{
+  overflow:scroll;
+}
+
+h1{
+  font-size: 250%;
+  transition: 1s;
+  word-spacing: 0.5em;
+  letter-spacing: 0.2em;
+}
+h1:hover{
+  font-size:300%;
+  color: grey;
+}
+
+.banner{
+  background-image:url('https://images.unsplash.com/photo-1551481921-cd2a3c855805?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+nav{
+  background: #000;
+}
+
+nav ul li{
+  display: inline-block;
+  padding: 0px 20px 5px 40px;
+  text-decoation: none;
+}
+
+nav ul li a{
+  font-size: 60%;
+  text-decoration: none;
+  color: white;
+  transition: 0.5s;
+}
+
+nav ul li a:hover{
+  color: lightblue;
+}
+
+.container{
+  max-width:920px;
+  padding-left:200px;
+  padding-right:200px;
+  margin:0 auto;
+  padding:80px;
+}
+
+.container h2, .container p{
+  display:flex;
+  self-content: end;
+}
+
+.flex-container{
+  display: flex;
+  flex-direction: row ;
+  /* ========================================================= */
+  padding: 1;
+  /* ========================================================= */
+}
+
+div.sec1 h2{
+  text-align: center;
+}
+
+div .sec1 p, .sec2 p, .sec3 p{
+  display: flex;
+  color: orange;
+  justify-content: center;
+  padding: 20px;
+}
+
+div.sec1{
+  flex:1;
+  background: blue;
+}
+
+div.sec2{
+  flex:2;
+  background: green;
+}
+div.sec3{
+  flex:1;
+  background: violet;
+}
+/*Keyframe playground*/
+p{
+  width: 100px;
+  height: 100px;
+  position :relative;
+  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 
+  animation: mymove 0.5s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  from {font-size: 50%;}
+  to {font-size: 52%;}
+}
+}
+
+/* Standard syntax
+@keyframes mymove {
+  from {font-size: 50%;}
+  to {font-size: 52%;}
+}
+*/
