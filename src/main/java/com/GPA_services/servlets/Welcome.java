@@ -38,7 +38,59 @@ public class Welcome extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		listAdmins(request, response, "displayClient.jsp");
+		String page = request.getParameter("page");
+		System.out.println("page: "+page);
+		if(page.equals("null")) {
+			this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
+		}
+		else if(page.equals("dashboard")) {	
+			
+			listAdmins(request, response, "Admin/dashboard.jsp");
+		}
+		else if(page.equals("booking")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/booking.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("informationmanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/informationmanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("parkingslot")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/parkingslot.jsp").forward(request, response);
+		}
+		else if(page.equals("payment")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/payment.jsp").forward(request, response);
+		}
+		else if(page.equals("usermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/usermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("category")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/category.jsp").forward(request, response);
+		}
+		else if(page.equals("usergroup")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/usergroup.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else if(page.equals("owenermanagement")) {
+			this.getServletContext().getRequestDispatcher("/pages/Admin/owenermanagement.jsp").forward(request, response);
+		}
+		else 
+			listAdmins(request, response, "index.jsp");
 	}
 
 
@@ -74,7 +126,7 @@ public class Welcome extends HttpServlet {
 		admins = adminDaoImpl .lister();
 		request.setAttribute("admins", admins);
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/"+route).forward(request, response);
+		this.getServletContext().getRequestDispatcher("/pages/"+route).forward(request, response);
 	}
 
 }
