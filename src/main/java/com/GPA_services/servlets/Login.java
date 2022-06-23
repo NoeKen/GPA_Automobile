@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
 	}
 
 	/**
@@ -40,6 +40,16 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		try {
+			login(request,response);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	
@@ -97,16 +107,28 @@ public class Login extends HttpServlet {
 
 	}
 	
-	private void login(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void login(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		Admin admin = new Admin();
 		String tel = request.getParameter("tel");
 		String password = request.getParameter("password");
+		String message;
 		AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
 		admin = adminDaoImpl.getAdmin(tel,password);
-		if(admin != null)
+		if(admin != null) {
 			System.out.println("admin Connected: "+admin.getTel()+" "+admin.getPassword() );
-		else System.out.println("Credential don match our record");
-		request.setAttribute("admins", admin);
+			request.setAttribute("admins", admin);
+			response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=dashboard");
+//			this.getServletContext().getRequestDispatcher("/pages/Admin/dashboard.jsp").forward(request, response);
+
+		}
+		else {
+			System.out.println("Credential don match our record");
+			message="Credential don match our record";
+			request.setAttribute("message", message);
+			this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
+
+		}
+
 	}
 
 }

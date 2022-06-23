@@ -10,7 +10,7 @@ public class DaoFactory {
 	public static Connection getConnection()  {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/gpa_automobile","root","");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gpa_automobile","root","");
 			return connection;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

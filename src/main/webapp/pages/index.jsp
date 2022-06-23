@@ -31,15 +31,18 @@
 				<a href="Welcome/index.jsp" class="h1"><b>Welcome</b></a>
 			</div>
     <div class="card-body">
+    	<c:if test="${ message!=null }" var="message">
+    		<p style="color:red">Credential don't match our record </p>
+		</c:if>
       <button type="button" class="btn btn-block btn-primary btn-lg" data-toggle="modal" data-target="#login"><i class="fa fa-lock"> LOGIN </i> 
       </button><button type="button" class="btn btn-block btn-info btn-lg" data-toggle="modal" data-target="#register"><i class="fa fa-pen"> REGISTER</i></button>
       
       <div class="modal fade" id="login">
                         <div class="modal-dialog modal-sm">
-                            <form action="Welcome?page=dashboard">
+                            <form action="Login" method="post">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 class="modal-title">LOGIN FORM</h4>
+                              <h4 class="modal-title">Welcome back </h4>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -48,18 +51,19 @@
                               <div class="card-body">
                                 <div class="row">
                                 <div class="col-12">
+                                
                                   <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter Username ..">
+                                    <input type="text" name="tel" class="form-control" placeholder="Enter Telephone number ..">
                                     <div class="input-group-append">
                                       <div class="input-group-text">
-                                        <span class="fas fa-user"></span>
+										<span class="fas fa-phone"></span>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="col-12">
                                   <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter Password ..">
+                                    <input type="text" name="password" class="form-control" placeholder="Enter Password ..">
                                     <div class="input-group-append">
                                       <div class="input-group-text">
                                         <span class="fas fa-lock"></span>
@@ -71,9 +75,9 @@
                               </div>
                           </div>
                             <div class="modal-footer justify-content-between">
-                            <a href="Welcome?page=dashboard">
+                            <!-- <a href="Welcome?page=dashboard">
                             	<p>Dashboard</p>
-                            	</a>
+                            	</a> -->
                               <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                               <button type="submit" class="btn btn-primary"><i class="fa fa-unlock"></i> Login</button>
                             </div>
