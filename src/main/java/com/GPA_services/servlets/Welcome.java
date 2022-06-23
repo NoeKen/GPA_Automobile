@@ -40,7 +40,7 @@ public class Welcome extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		System.out.println("page: "+page);
-		if(page.equals("null")) {
+		if(page==null) {
 			this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
 		}
 		else if(page.equals("dashboard")) {	

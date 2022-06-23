@@ -103,32 +103,32 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Owner Management Form</p>
 								</a></li>
-								<li class="nav-item"><a href="category.php"
+								<li class="nav-item"><a href="Welcome_page=category"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Category</p>
 								</a></li>
-								<li class="nav-item"><a href="informationmanagement.php"
+								<li class="nav-item"><a href="Welcome?page=informationmanagement"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Information Management</p>
 								</a></li>
 							</ul></li>
-						<li class="nav-item"><a href="parkingslot.php"
+						<li class="nav-item"><a href="Welcome?page=parkingslot"
 							class="nav-link"> <i class="nav-icon fas fa-parking"></i>
 								<p>Parking Slot</p>
 						</a></li>
-						<li class="nav-item"><a href="payment.php" class="nav-link">
+						<li class="nav-item"><a href="Welcome?page=payment" class="nav-link">
 								<i class="nav-icon fas fa-money-bill-alt"></i>
 								<p>Payment</p>
 						</a></li>
-						<li class="nav-item"><a href="usermanagement.php"
+						<li class="nav-item"><a href="Welcome?page=usermanagement"
 							class="nav-link"> <i class="nav-icon fas fa-users-cog"></i>
 								<p>User Management</p>
 						</a></li>
-						<li class="nav-item"><a href="usergroup.php" class="nav-link">
+						<li class="nav-item"><a href="Welcome?page=usergroup" class="nav-link">
 								<i class="nav-icon fas fa-users"></i>
 								<p>User Group</p>
 						</a></li>
-						<li class="nav-item"><a href="../index.php" class="nav-link">
+						<li class="nav-item"><a href="Welcome?page=index" class="nav-link">
 								<i class="nav-icon fas fa-power-off"></i>
 								<p>Logout</p>
 						</a></li>
