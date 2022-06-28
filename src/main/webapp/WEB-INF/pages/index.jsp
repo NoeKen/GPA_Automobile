@@ -22,7 +22,7 @@
 	        <link rel="shortcut icon" href="<c:url value='favicon.ico'/>"></link>
 	</head>
 	<body>
-		<!--========== SLIDER ==========-->
+		<!--========== SLIDER ==========--> 
 	        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	            <div class="container">
 	                <!-- Indicators -->
