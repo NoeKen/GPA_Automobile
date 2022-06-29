@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vehicle Parking Management System</title>
+<title>GPA_Automobile</title>
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
@@ -87,7 +87,7 @@
 								<i class="nav-icon fas fa-tachometer-alt"></i>
 								<p>Dashboard</p>
 						</a></li>
-						<li class="nav-item menu-open"><a href="Welcome?page=dashboard"
+						<li class="nav-item menu-open"><a href="#"
 							class="nav-link active"> <i class="nav-icon fas fa-book"></i>
 								<p>Booking</p>
 						</a></li>

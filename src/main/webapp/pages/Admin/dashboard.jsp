@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GPA_AUTOMOBILE3E</title>
+<title>GP_AUTOMOBILE</title>
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
@@ -80,7 +80,9 @@
 							class="img-square elevation-3" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Fullname Example</a>
+						<c:if test="${!empty sessionScope.userName}">
+							<a href="#" class="d-block">${sessionScope.userName}</a>
+						</c:if>
 					</div>
 
 				</div>

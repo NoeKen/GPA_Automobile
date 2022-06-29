@@ -1,5 +1,12 @@
 package com.GPA_services.beans;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
+
 public class Admin {
 	
 	private String firstName;
@@ -7,7 +14,26 @@ public class Admin {
 	private String tel;
 	private String CNI;
 	private String password;
+	private String avatar;
+	private String Username;
+	private String email;
 	
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 	/**
 	 * 
 	 */
@@ -15,6 +41,38 @@ public class Admin {
 	}
 	
 	
+	/**
+	 * @return the avatar
+	 */
+	public String getAvatar() {
+		return avatar;
+	}
+
+
+	/**
+	 * @param avatar the avatar to set
+	 */
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return Username;
+	}
+
+
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername(String username) {
+		Username = username;
+	}
+
+
 	/**
 	 * @return the firstName
 	 */
@@ -74,6 +132,19 @@ public class Admin {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public void setAvatar(Blob blob) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		File file = new File("D:\\ICT L3 S2\\ICT308\\TP\\img_tmp\\avatar.png");
+		FileOutputStream fos = new FileOutputStream(file);
+		byte b[];
+		b = blob.getBytes(1, (int)blob.length());
+		fos.write(b);
+		this.avatar = file.getAbsolutePath();
+		
+		System.out.println("Bean Admin avatar: "+avatar);
 	}
 	
 	

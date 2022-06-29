@@ -1,5 +1,6 @@
 package com.GPA_services.dao;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,10 +15,11 @@ import com.GPA_services.beans.Admin;
 public class AdminDaoImpl implements AdminDao {
 	@Override
 	public boolean ajouter(Admin admin) {
-		String sql = "insert into admin (first_name,last_name,tel_admin,cni_admin,password) values (?,?,?,?,?)";
+		String sql = "insert into admin (img,first_name,last_name,email,tel_admin,cni_admin,password,userName) values (?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement prepStatement = DaoFactory.getConnection().prepareStatement(sql);
 			
+			prepStatement.setString(1, admin.getAvatar());
 			prepStatement.setString(1, admin.getFirstName());
 			prepStatement.setString(2, admin.getLastName());
 			prepStatement.setString(3, admin.getTel());
@@ -82,11 +84,14 @@ public class AdminDaoImpl implements AdminDao {
 			if(result.next()) {
 				Admin admin = new Admin();
 //				student.setSdtId(result.getInt(1));
-				admin.setFirstName (result.getString(2));
-				admin.setLastName(result.getString(3));
-				admin.setTel(result.getString(4));
-				admin.setCNI(result.getString(5));
-				admin.setPassword(result.getString(6));
+				admin.setAvatar(result.getBlob(2));
+				admin.setFirstName (result.getString(3));
+				admin.setLastName(result.getString(4));
+				admin.setEmail(result.getString(5));
+				admin.setTel(result.getString(6));
+				admin.setCNI(result.getString(7));
+				admin.setPassword(result.getString(8));
+				admin.setUsername(result.getString(9));
 				
 				System.out.println(admin.getTel()+" "+admin.getPassword());
 				return admin;
@@ -94,7 +99,7 @@ public class AdminDaoImpl implements AdminDao {
 				System.out.println("Credentials do not match our records");
 				return null;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -111,21 +116,26 @@ public class AdminDaoImpl implements AdminDao {
 			System.out.println("Get Admin from database: ");
 			while (result.next()) {
 				Admin admin = new Admin();
-				admin.setFirstName (result.getString(2));
-				admin.setLastName(result.getString(3));
-				admin.setTel(result.getString(4));
-				admin.setCNI(result.getString(5));
+				admin.setAvatar(result.getBlob(2));
+				admin.setFirstName (result.getString(3));
+				admin.setLastName(result.getString(4));
+				admin.setEmail(result.getString(5));
+				admin.setTel(result.getString(6));
+				admin.setCNI(result.getString(7));
+				admin.setPassword(result.getString(8));
+				admin.setUsername(result.getString(9));
+				
 				
 //				student.setSdtId(result.getInt(1));
 //				student.setNom(result.getString(2));
 //				student.setPrenom(result.getString(3));
 //				student.setAge(result.getString(4));
 //				student.setMatricule(result.getString(5));
-				System.out.println("Name : "+admin.getFirstName()+" "+admin.getLastName());
+//				System.out.println("Avatar: "+admin.getAvatar() +"Name : "+admin.getFirstName()+" "+admin.getLastName());
 				list.add(admin);
 				
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
 		

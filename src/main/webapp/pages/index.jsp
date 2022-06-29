@@ -36,7 +36,7 @@
       
       <div class="modal fade" id="login">
                         <div class="modal-dialog modal-sm">
-                            <form action="Welcome?page=dashboard">
+                            <form action="Welcome" method="post">
                           <div class="modal-content">
                             <div class="modal-header">
                               <h4 class="modal-title">LOGIN FORM</h4>
@@ -49,7 +49,7 @@
                                 <div class="row">
                                 <div class="col-12">
                                   <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter Username ..">
+                                    <input type="text" class="form-control" name="tel" placeholder="Enter Username ..">
                                     <div class="input-group-append">
                                       <div class="input-group-text">
                                         <span class="fas fa-user"></span>
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-12">
                                   <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter Password ..">
+                                    <input type="text" class="form-control hidden" name="password" placeholder="Enter Password ..">
                                     <div class="input-group-append">
                                       <div class="input-group-text">
                                         <span class="fas fa-lock"></span>
@@ -71,9 +71,6 @@
                               </div>
                           </div>
                             <div class="modal-footer justify-content-between">
-                            <a href="Welcome?page=dashboard">
-                            	<p>Dashboard</p>
-                            	</a>
                               <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                               <button type="submit" class="btn btn-primary"><i class="fa fa-unlock"></i> Login</button>
                             </div>
