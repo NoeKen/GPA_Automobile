@@ -9,12 +9,29 @@ import java.sql.SQLException;
 
 public class Admin {
 	
+	private int idAdmin;
 	private String firstName;
 	private String lastName;
 	private String tel;
 	private String CNI;
 	private String password;
 	private String avatar;
+	/**
+	 * @return the idAdmin
+	 */
+	public int getIdAdmin() {
+		return idAdmin;
+	}
+
+
+	/**
+	 * @param idAdmin the idAdmin to set
+	 */
+	public void setIdAdmin(int idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
+
 	private String Username;
 	private String email;
 	

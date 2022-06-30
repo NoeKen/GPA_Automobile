@@ -36,11 +36,11 @@ public class Welcome extends HttpServlet {
 		String login = request.getParameter("login");
 		System.out.println("page: "+page);
 		System.out.println("page: "+login);
-		if (session == null) {
-//			response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=login");
-			this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
-		}
-		else {
+//		if (session == null) {
+////			response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=login");
+//			this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
+//		}
+//		else {
 			if(page==null) {
 				this.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(request, response);
 			}
@@ -85,7 +85,7 @@ public class Welcome extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-			}
+//			}
 		}
 	}
 
@@ -95,26 +95,11 @@ public class Welcome extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Admin admin = new Admin();
-//		try {
-////			String id = request.getParameter("id");
-//			admin.setFirstName(request.getParameter("firstname"));
-//			admin.setLastName(request.getParameter("lastname"));
-//			admin.setTel(request.getParameter("tel"));
-//			admin.setCNI(request.getParameter("cni"));
-//			admin.setPassword(request.getParameter("password"));
-//			AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
-//			adminDaoImpl.ajouter(admin);
-//			this.setPage("displayClient.js");
-////		adminDaoImpl.editAmin(Integer.parseInt(id), admin);
-//			listAdmins(request, response, page);
-//		} catch (ServletException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		String path = request.getServletPath();
+		System.out.println("Servlet Path: "+ path);
+		
 		try {
-			login(request, response);
+			updateAdmin(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,7 +107,40 @@ public class Welcome extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		doGet(request, response);
+		
+//		try {
+//			deleteAdmin(request, response);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		if(password != null) {
+//				try {
+//					login(request, response);
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		else {
+			
+			//			listAdmins(request, response, page);	
+//		}
+		
+//		try {
+//			register(request, response);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 	}
 	
 	protected void listAdmins(HttpServletRequest request, HttpServletResponse response, String route) throws ServletException, IOException {
@@ -156,11 +174,53 @@ public class Welcome extends HttpServlet {
 	
 private void logOut(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
 		session = null;
-		response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=");
+		response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome");
 	}
 	
 	private void register(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		Admin admin = new Admin();
+		//			String id = request.getParameter("id");
+//				admin.setAvatar(req)
+		admin.setFirstName(request.getParameter("firstName"));
+		admin.setLastName(request.getParameter("lastName"));
+		admin.setTel(request.getParameter("tel"));
+		admin.setCNI(request.getParameter("cni"));
+		admin.setPassword(request.getParameter("password"));
+		admin.setEmail(request.getParameter("email"));
+		admin.setUsername(request.getParameter("userName"));
 		
+		AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
+		Boolean result = adminDaoImpl.ajouter(admin);
+		System.out.println("Admin ajoute ? "+ result);
+		//			this.setPage("displayClient.js");
+		//		adminDaoImpl.editAmin(Integer.parseInt(id), admin);
+		response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=usermanagement");
 	}
-
+	
+	private void deleteAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
+		boolean result = adminDaoImpl.deleteAdmin(Integer.parseInt(request.getParameter("idAdmin")));
+		System.out.println("L'admin : "+ request.getParameter("idAdmin")+"a bien ete supprime? "+result);
+		response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=usermanagement");
+	}
+	
+	private void updateAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		Admin admin = new Admin();
+		//			String id = request.getParameter("id");
+//				admin.setAvatar(req)
+		admin.setFirstName(request.getParameter("firstName"));
+		admin.setLastName(request.getParameter("lastName"));
+		admin.setTel(request.getParameter("tel"));
+		admin.setCNI(request.getParameter("cni"));
+		admin.setPassword(request.getParameter("password"));
+		admin.setEmail(request.getParameter("email"));
+		admin.setUsername(request.getParameter("userName"));
+		
+		AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
+		Admin result = adminDaoImpl.editAmin(admin);
+		System.out.println("Admin mis a jour ? "+ result.getUsername()+" "+result.getEmail());
+		//			this.setPage("displayClient.js");
+		//		adminDaoImpl.editAmin(Integer.parseInt(id), admin);
+		response.sendRedirect("http://localhost:8080/GPA_Automobile/Welcome?page=usermanagement");
+	}
 }

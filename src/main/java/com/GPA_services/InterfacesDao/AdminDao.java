@@ -8,5 +8,5 @@ public interface AdminDao {
 	boolean ajouter( Admin admin );
     List<Admin> lister();
     boolean deleteAdmin(int id);
-    Admin editAmin(int id, Admin admin);
+    Admin editAmin(Admin admin);
 }

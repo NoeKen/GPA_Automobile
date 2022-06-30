@@ -15,18 +15,21 @@ import com.GPA_services.beans.Admin;
 public class AdminDaoImpl implements AdminDao {
 	@Override
 	public boolean ajouter(Admin admin) {
-		String sql = "insert into admin (img,first_name,last_name,email,tel_admin,cni_admin,password,userName) values (?,?,?,?,?,?,?,?)";
+		System.out.println("Admin pour ajout:"+admin.getFirstName() +admin.getLastName());
+		String sql = "insert into admin (first_name,last_name,email,tel_admin,cni_admin,password,userName) values (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement prepStatement = DaoFactory.getConnection().prepareStatement(sql);
 			
-			prepStatement.setString(1, admin.getAvatar());
+//			prepStatement.setString(1, admin.getAvatar());
 			prepStatement.setString(1, admin.getFirstName());
 			prepStatement.setString(2, admin.getLastName());
-			prepStatement.setString(3, admin.getTel());
-			prepStatement.setString(4, admin.getCNI());
-			prepStatement.setString(5, admin.getPassword());
-			System.out.println("item inserted successfully\n"+admin);
-			return prepStatement.executeUpdate()>0;
+			prepStatement.setString(3, admin.getEmail());
+			prepStatement.setString(4, admin.getTel());
+			prepStatement.setString(5, admin.getCNI());
+			prepStatement.setString(6, admin.getPassword());
+			prepStatement.setString(7, admin.getUsername());
+			int result = prepStatement.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -35,13 +38,13 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Override
 	public boolean deleteAdmin(int id) {
-		String sql = "delete from admin where matricule =?";
+		String sql = "delete from admin where id_Admin =?";
 		try {
 			PreparedStatement prepStatement = DaoFactory.getConnection().prepareStatement(sql);
 			
 			prepStatement.setInt(1, id);
-			
-			return prepStatement.executeUpdate()>0;
+			int result = prepStatement.executeUpdate();
+			return true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,16 +54,21 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public Admin editAmin(int stdId, Admin admin) {
-		String sql = "update admin set first_name = ?,last_name=?,tel_admin=?,cni_admin=? where id_admin = ? ";
+	public Admin editAmin(Admin admin) {
+		String sql = "update admin set first_name = ?,last_name=?,email=?,tel_admin=?,cni_admin=?,userName=? where id_Admin = ? ";
 		
 		try {
 			PreparedStatement prepStatement = DaoFactory.getConnection().prepareStatement(sql);
-			prepStatement.setString(2, admin.getFirstName());
-			prepStatement.setString(3, admin.getLastName());
+			prepStatement.setString(1, admin.getFirstName());
+			prepStatement.setString(2, admin.getLastName());
+			prepStatement.setString(3, admin.getEmail());
 			prepStatement.setString(4, admin.getTel());
 			prepStatement.setString(5, admin.getCNI());
-			prepStatement.setString(6, admin.getPassword());
+			prepStatement.setString(6, admin.getUsername());
+			prepStatement.setInt(7, admin.getIdAdmin());
+			
+			int result = prepStatement.executeUpdate();
+			System.out.println("admin  mis a jour: "+result);
 			
 			return admin;
 		} catch (SQLException e) {
@@ -83,7 +91,7 @@ public class AdminDaoImpl implements AdminDao {
 			
 			if(result.next()) {
 				Admin admin = new Admin();
-//				student.setSdtId(result.getInt(1));
+				admin.setIdAdmin(result.getInt(1));
 				admin.setAvatar(result.getBlob(2));
 				admin.setFirstName (result.getString(3));
 				admin.setLastName(result.getString(4));
@@ -113,9 +121,9 @@ public class AdminDaoImpl implements AdminDao {
 			PreparedStatement prepStatement = DaoFactory.getConnection().prepareStatement(sql);
 			ResultSet result = prepStatement.executeQuery();
 			
-			System.out.println("Get Admin from database: ");
 			while (result.next()) {
 				Admin admin = new Admin();
+				admin.setIdAdmin(result.getInt(1));
 				admin.setAvatar(result.getBlob(2));
 				admin.setFirstName (result.getString(3));
 				admin.setLastName(result.getString(4));
@@ -124,14 +132,6 @@ public class AdminDaoImpl implements AdminDao {
 				admin.setCNI(result.getString(7));
 				admin.setPassword(result.getString(8));
 				admin.setUsername(result.getString(9));
-				
-				
-//				student.setSdtId(result.getInt(1));
-//				student.setNom(result.getString(2));
-//				student.setPrenom(result.getString(3));
-//				student.setAge(result.getString(4));
-//				student.setMatricule(result.getString(5));
-//				System.out.println("Avatar: "+admin.getAvatar() +"Name : "+admin.getFirstName()+" "+admin.getLastName());
 				list.add(admin);
 				
 			}

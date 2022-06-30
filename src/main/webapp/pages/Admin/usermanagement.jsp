@@ -177,6 +177,10 @@
 										data-toggle="modal" data-target="#add">
 										<i class="fa fa-plus"></i> Add
 									</button>
+									<button class="btn btn-primary btn-xs" style="margin-left: 10px"
+										data-toggle="modal" data-target="#edit">
+										<i class="fa fa-edit"></i> Update
+									</button>
 									<div class="modal fade" id="add">
 										<div class="modal-dialog modal-md">
 											<form action="">
@@ -190,52 +194,62 @@
 													</div>
 													<div class="card card-primary">
 														<div class="card-body">
+															
 															<div class="row">
-																<div class="col-12">
+																<input type="text" class="form-control" name="page" id=""
+																		value="addAmin"	placeholder="First Name">
+																<div class="col-6">
 																	<div class="form-group">
-																		<label for="exampleInputEmail1">Complete Name</label>
-																		<input type="text" class="form-control" id=""
-																			placeholder="-          First Name           -        Middle Name          -       Last Name         -">
+																		<label for="exampleInputEmail1">First Name</label>
+																		<input type="text" class="form-control" name="firstName" id=""
+																			placeholder="First Name">
+																	</div>
+																</div>
+																
+																<div class="col-6">
+																	<div class="form-group">
+																		<label for="exampleInputEmail1">Last Name</label>
+																		<input type="text" name="lastName" class="form-control" id=""
+																			placeholder="Last Name">
 																	</div>
 																</div>
 
-
 																<div class="col-6">
 																	<div class="form-group">
-																		<label for="exampleInputEmail1">Contact</label> <input
-																			type="text" class="form-control" id=""
-																			placeholder="Enter Contact ..">
+																		<label for="exampleInputEmail1">Phone Number</label> <input
+																			type="text" name="tel" class="form-control" id=""
+																			placeholder="Enter Phone Number">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Email</label> <input
-																			type="text" class="form-control" id=""
+																			type="text" class="form-control" name="email" id=""
 																			placeholder="Enter Email ..">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Username</label> <input
-																			type="text" class="form-control" id=""
+																			type="text" class="form-control" name="userName" id=""
 																			placeholder="Enter Username ..">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Password</label> <input
-																			type="password" class="form-control" id=""
+																			type="password" name="password" class="form-control" id=""
 																			placeholder="Enter Password ..">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
-																		<label for="exampleInputEmail1">Category</label> <input
-																			type="password" class="form-control" id=""
-																			placeholder="Enter User Category ..">
+																		<label for="exampleInputEmail1">CNI</label> <input
+																			type="text" class="form-control" name="cni" id=""
+																			placeholder="Enter Admin CNI ..">
 																	</div>
 																</div>
-																<div class="col-6">
+																<!-- <div class="col-6">
 																	<div class="form-group">
 																		<label>Select Status</label> <select
 																			class="form-control">
@@ -252,7 +266,7 @@
 																				class="custom-file-label" for="customFile">Avatar</label>
 																		</div>
 																	</div>
-																</div>
+																</div> -->
 															</div>
 														</div>
 													</div>
@@ -278,7 +292,7 @@
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>Avatar</th>
+												<th>Id</th>
 												<th>FullName</th>
 												<th>UserName</th>
 												<th>Password</th>
@@ -294,20 +308,20 @@
 													class="img-square elevation-3"
 													style="width: 50px; border-radius: 10%;" alt="User Image">
 												</td> -->
-												<td><img alt="avatar" src="E:/eclipse/GPA_Automobile/src/main/webapp/ressources/dist/img/avatar.png" /></td>
+												<td><c:out value="${admins.idAdmin}" /></td> 
 												<td><c:out value="${admins.firstName} ${admins.lastName}" /></td>
 												<!--<td><c:out value="${admins.avatar}" /></td>-->
 												<td><c:out value="${admins.username}" /></td> 
 												<td><c:out value="${admins.password}" /></td>
 												<td><c:out value="${admins.tel}" /></td>
 												<td><c:out value="${admins.email}" /></td>
-												<td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button> <button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
+												<td><form action="Welcomedelete" method="post" > <input type="hidden" name="idAdmin" value="<c:out value="${admins.idAdmin}" />"/> <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></form></td>
 											</tr>
 											</c:forEach>
 										</tbody>
 										<tfoot>
 											<tr>
-												<th>Avatar</th>
+												<th>Id</th>
 												<th>FullName</th>
 												<th>UserName</th>
 												<th>Password</th>
@@ -332,8 +346,14 @@
 														<div class="card-body">
 															
 															<div class="row">
-																<input type="text" class="form-control" name="firstName" id=""
-																			placeholder="First Name">
+																<div class="col-6">
+																	<div class="form-group">
+																		<label for="exampleInputEmail1">Id</label>
+																		<input type="text" class="form-control" name="idAdmin" id=""
+																			placeholder="Id for updating">
+																	</div>
+																</div>
+																
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">First Name</label>
@@ -345,7 +365,7 @@
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Last Name</label>
-																		<input type="text" class="form-control" id=""
+																		<input type="text" name="lastName" class="form-control" id=""
 																			placeholder="Last Name">
 																	</div>
 																</div>
@@ -353,54 +373,36 @@
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Phone Number</label> <input
-																			type="text" class="form-control" id=""
-																			placeholder="Enter Contact ..">
+																			type="text" name="tel" class="form-control" id=""
+																			placeholder="Enter Phone Number">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Email</label> <input
-																			type="text" class="form-control" id=""
+																			type="text" class="form-control" name="email" id=""
 																			placeholder="Enter Email ..">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Username</label> <input
-																			type="text" class="form-control" id=""
+																			type="text" class="form-control" name="userName" id=""
 																			placeholder="Enter Username ..">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
 																		<label for="exampleInputEmail1">Password</label> <input
-																			type="password" class="form-control" id=""
+																			type="password" name="password" class="form-control" id=""
 																			placeholder="Enter Password ..">
-																	</div>
-																</div>
-																<!-- <div class="col-6">
-																	<div class="form-group">
-																		<label for="exampleInputEmail1">Category</label> <input
-																			type="password" class="form-control" id=""
-																			placeholder="Enter User Category ..">
 																	</div>
 																</div>
 																<div class="col-6">
 																	<div class="form-group">
-																		<label>Select Status</label> <select
-																			class="form-control">
-																			<option>Active</option>
-																			<option>Inactive</option>
-																		</select>
-																	</div>
-																</div>-->
-																<div class="col-12">
-																	<div class="form-group">
-																		<div class="custom-file">
-																			<input type="file" class="custom-file-input"
-																				id="customFile"> <label
-																				class="custom-file-label" for="customFile">Avatar</label>
-																		</div>
+																		<label for="exampleInputEmail1">CNI</label> <input
+																			type="text" class="form-control" name="cni" id=""
+																			placeholder="Enter Admin CNI ..">
 																	</div>
 																</div>
 															</div>
